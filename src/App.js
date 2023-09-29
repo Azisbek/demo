@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Button from "./components/UI/Button";
+import StudentList from "./components/student/StudentList";
 
 function App() {
+  const student = [
+    {
+      id: 2,
+      title: "Azis",
+    },
+    {
+      id: 3,
+      title: "DN",
+    },
+    {
+      id: 1,
+      title: "Hello world",
+    },
+  ];
+  const [show, setShow] = useState(false);
+
+  function formSetShow() {
+    setShow((prevstate) => !prevstate);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {show &&
+        student.map((el) => {
+          return <StudentList name={el.title} />;
+        })}
+      <Button onClick={formSetShow}>Click</Button>
     </div>
   );
 }
